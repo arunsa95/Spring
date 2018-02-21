@@ -1,0 +1,30 @@
+<persistence xmlns="http://java.sun.com/xml/ns/persistence"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence 
+        http://java.sun.com/xml/ns/persistence/persistence_1_0.xsd"
+	version="1.0">
+	<persistence-unit name="AccountService">
+		<provider> org.hibernate.ejb.HibernatePersistence</provider>
+		<mapping-file>META-INF/orm_mapping.xml</mapping-file>
+		<properties>
+    		 <property name="hibernate.connection.driver_class"  value="com.mysql.jdbc.Driver" />
+			 <property name="hibernate.connection.url" value="jdbc:mysql://localhost/training" />
+   			 <property name="hibernate.connection.username" value="root" />
+  			 <property name="hibernate.connection.password" value="root" /> 
+  			 <property name="hibernate.hbm2ddl.auto" value="create" />
+       		  <!-- Echo all executed SQL to stdout -->
+			<property name="hibernate.show_sql" value="true" />
+			<property name="hibernate.format_sql" value="true" />
+		    
+		</properties>
+		
+	</persistence-unit>
+</persistence>
+
+
+
+
+
+
+
+
