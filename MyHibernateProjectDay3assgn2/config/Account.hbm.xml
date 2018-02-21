@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="hibernate.vo.Account" table="ACCOUNT">
+		<id name="accountId" column="ACCOUNT_ID">
+			<generator class="assigned" />
+		</id>
+		<property name="creationDate" column="CREATION_DATE" type="timestamp"
+			update="false" />
+		<property name="accountType" column="ACCOUNT_TYPE" type="string"
+			update="false" />
+		<property name="balance" column="BALANCE" type="double" />
+		
+		<set name="transactions" table="Transaction" inverse="true" lazy="false"
+			fetch="select" cascade="all">
+			<key>
+				<column name="ACCOUNT_ID" not-null="true" />
+			</key>
+			<one-to-many class="hibernate.vo.Transaction" />
+		</set>
+	</class>
+
+	<class name="hibernate.vo.Transaction" table="Transaction">
+		<id name="transactionId" column="TRANSACTION_ID">
+			<generator class="native" />
+		</id>
+		<property name="transactionDate" column="TRANSACTION_DATE"
+			type="timestamp" update="false" />
+		<property name="transactionType" column="TRANSACTION_TYPE"
+			type="string" update="false" />
+		<property name="amount" column="AMOUNT" type="double" />
+		<many-to-one name="account" class="hibernate.vo.Account" fetch="select" >
+			<column name="ACCOUNT_ID" not-null="true">
+			</column>
+		</many-to-one>
+	</class>
+
+
+
+</hibernate-mapping>
