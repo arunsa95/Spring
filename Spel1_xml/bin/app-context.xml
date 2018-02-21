@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:c="http://www.springframework.org/schema/c"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+	<bean id="book" class="cg.Book">
+	<property name="id" value="1"></property>
+	<property name="title" value="Goldilocks"></property>
+	<property name="testEqual" value="#{1 == 2}" />
+	
+	</bean>
+<bean id="author" class="cg.Author">
+	<property name="name" value="James"/>
+	<property name="book" value="#{book}"/>
+	<property name="bookTitle" value = "#{book.title}"/>
+</bean>
+
+</beans>
