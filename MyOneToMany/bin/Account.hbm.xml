@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="Phone" table="Phone">
+		<id name="phoneId" type="long" column="PHONE_ID">
+			<generator class="native" />
+		</id>
+		<property name="phoneType" type="string" length="10" column="PHONE_TYPE" />
+		<property name="phoneNumber" type="string" length="15"
+			column="PHONE_NUMBER" />
+	</class>
+
+	<class name="Student" table="STUDENT">
+		<id name="studentId" type="long" column="STUDENT_ID">
+			<generator class="native" />
+		</id>
+		<property name="studentName" type="string" not-null="true"
+			column="STUDENT_NAME" />
+		<set name="studentPhoneNumbers" table="STUDENT_PHONE" cascade="all">
+			<key column="STUDENT_ID" />
+			<many-to-many column="PHONE_ID" unique="true" class="Phone" />
+		</set>
+	</class>
+
+
+</hibernate-mapping>

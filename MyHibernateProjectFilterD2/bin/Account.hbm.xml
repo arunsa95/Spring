@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="Account" table="ACCOUNT">
+		<id name="accountId" column="ACCOUNT_ID">
+			<generator class="assigned" />
+		</id>
+		<property name="ACCOUNT_TYPE_SAVINGS" type="string" not-null="true"
+			column="ACC_SAVING" />
+			
+		<property name="accountType" column="ACCOUNT_TYPE" type="string"
+			update="false" />
+			
+		<property name="creationDate" column="CREATION_DATE" type="timestamp"
+			update="false" />
+			
+		<property name="accountaccountsType" column="ACCOUNT_TYPE"
+			type="string" update="false" />
+			
+		<property name="balance" column="BALANCE" type="double" />
+		<filter name="balanceFilter" condition="balance >:amount" />
+	</class>
+
+	<class name="Transaction" table="TRANSACTION">
+
+
+		<set name="ACCOUNTTRANSACTION" inverse="true" cascade="all">
+
+			<key column="accountId" not-null="true" />
+
+			<one-to-many column="transaction_Id" unique="true" class="Transaction" />
+		</set>
+	</class>
+
+
+	<filter-def name="balanceFilter">
+		<filter-param name="amount" type="double" />
+	</filter-def>
+</hibernate-mapping>
